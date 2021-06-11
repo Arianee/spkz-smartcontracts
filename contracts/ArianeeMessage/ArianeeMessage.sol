@@ -3,7 +3,7 @@ pragma solidity 0.5.6;
 import "@0xcert/ethereum-utils-contracts/src/contracts/permission/ownable.sol";
 
 contract iArianeeWhitelist{
-    function isAuthorized(uint256 _tokenId, address _sender, address _tokenOwner) public view returns(bool);
+    function isAuthorized(uint256 _tokenId, address _sender) public view returns(bool);
 }
 
 contract ERC721Interface {
@@ -30,7 +30,6 @@ contract ArianeeMessage is Ownable{
   struct Message {
     bytes32 imprint;
     address sender;
-    address to;
     uint256 tokenId;
   }
 
@@ -83,13 +82,12 @@ contract ArianeeMessage is Ownable{
   function sendMessage(uint256 _messageId, uint256 _tokenId, bytes32 _imprint, address _from, uint256 _reward) public onlyStore() {
 
     address _owner = smartAsset.ownerOf(_tokenId);
-    require(whitelist.isAuthorized(_tokenId, _from, _owner));
+    require(whitelist.isAuthorized(_tokenId, _from));
     require(messages[_messageId].sender == address(0));
-    
+
     Message memory _message = Message({
             imprint : _imprint,
             sender : _from,
-            to : _owner,
             tokenId: _tokenId
         });
 
@@ -102,22 +100,5 @@ contract ArianeeMessage is Ownable{
     emit MessageSent(_owner, _from, _tokenId, _messageId);
     }
 
-  /**
- * @dev Read a message
- * @notice can only be called by the store
- * @param _messageId of the message
- */
-  function readMessage(uint256 _messageId, address _from) public onlyStore() returns (uint256){
-    uint256 reward = rewards[_messageId];
-    address _owner = messages[_messageId].to;
 
-    require(_from == _owner);
-
-    address _sender = messages[_messageId].sender;
-    delete rewards[_messageId];
-
-    emit MessageRead(_owner, _sender, _messageId);
-
-    return reward;
-    }
 }

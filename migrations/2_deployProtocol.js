@@ -20,10 +20,7 @@ async function deployProtocol(deployer, network, accounts) {
   const ownerAddress = accounts[0];
 
 
-  // need to deploy as blank, otherwise it is not working with ganache cli
-  await deployer.deploy(Aria);
-
-  const ariaInstance = await deployer.deploy(Aria);
+  const ariaInstance = {address:"0x46F48FbdedAa6F5500993BEDE9539ef85F4BeE8e"}
   const whiteListInstance = await deployer.deploy(Whitelist);
   const arianeeSmartAssetInstance = await deployer.deploy(ArianeeSmartAsset, whiteListInstance.address);
   const messageInstance = await deployer.deploy(ArianeeMessage, whiteListInstance.address, arianeeSmartAssetInstance.address);

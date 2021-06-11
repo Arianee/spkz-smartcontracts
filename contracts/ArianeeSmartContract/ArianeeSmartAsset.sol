@@ -18,7 +18,7 @@ import "./ECDSA.sol";
 import "@0xcert/ethereum-erc721-contracts/src/contracts/nf-token-metadata-enumerable.sol";
 
 /// @title Contract handling Arianee Certificates.
-contract ArianeeSmartAsset is
+contract Spkezbeta is
 NFTokenMetadataEnumerable,
 Abilitable,
 Ownable,
@@ -150,10 +150,10 @@ Pausable
   )
   public
   {
-    nftName = "Arianee Smart-Asset";
-    nftSymbol = "AriaSA";
+    nftName = "Spkez beta";
+    nftSymbol = "spkzb";
     setWhitelistAddress(_arianeeWhitelistAddress);
-    _setUriBase("https://cert.arianee.org/");
+    _setUriBase("");
   }
   
   /**

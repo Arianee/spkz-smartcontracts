@@ -64,7 +64,7 @@ import "@0xcert/ethereum-utils-contracts/src/contracts/permission/ownable.sol";
 import "./Pausable.sol";
 
 /// @title Contract managing the Arianee economy.
-contract ArianeeStore is Pausable {
+contract SpkezStore is Pausable {
     using SafeMath for uint256;
     using AddressUtils for address;
 
@@ -330,7 +330,7 @@ contract ArianeeStore is Pausable {
      * @param _oldStoreAddress address of the previous store.
      */
     function getAriaFromOldStore(address _oldStoreAddress) onlyOwner() external {
-        ArianeeStore oldStore = ArianeeStore(address(_oldStoreAddress));
+        SpkezStore oldStore = SpkezStore(address(_oldStoreAddress));
         oldStore.withdrawArias();
     }
 
