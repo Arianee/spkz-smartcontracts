@@ -3,3 +3,7 @@ node_modules
 build/
 .idea/
 truffle.js
+contracts/*/artifacts
+contracts/*/includes/artifacts
+.deps
+.openzeppelin
