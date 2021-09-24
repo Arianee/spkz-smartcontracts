@@ -43,7 +43,7 @@ contract SPKZ is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721
         _initializeEIP712("SPKZ");
         setContractUri(_newContractUri);
     }
-    
+
     function _authorizeUpgrade(address newImplementation)
         internal
         onlyRole(UPGRADER_ROLE)
@@ -58,8 +58,9 @@ contract SPKZ is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721
         _unpause();
     }
 
-    function safeMint(address to) public {
+    function safeMint(address to, string memory _tokenURI) public {
         _safeMint(to, _tokenIdCounter.current());
+        _setTokenURI(_tokenIdCounter.current(), _tokenURI);
         _tokenIdCounter.increment();
     }
 
