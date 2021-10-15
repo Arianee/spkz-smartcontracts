@@ -22,7 +22,7 @@ contract SPKZBar is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeabl
     __ERC721Enumerable_init();
     __Ownable_init();
     __UUPSUpgradeable_init();
-    setContractUri(_newContractUri);
+    contractUri = _newContractUri;
   }
 
   function safeMint(address to) public {
@@ -59,22 +59,22 @@ contract SPKZBar is Initializable, ERC721Upgradeable, ERC721EnumerableUpgradeabl
     require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
     if(tokenId == 0){
-      return "metadata0";
+      return "https://raw.githubusercontent.com/Arianee/spkz-metadata/main/80001/spkz-bar/0.json";
     }
 
     if(tokenId < 17){
-      return "metadata1";
+      return "https://raw.githubusercontent.com/Arianee/spkz-metadata/main/80001/spkz-bar/2-16.json";
     }
 
     if(tokenId == 17){
-      return "metadata2";
+      return "https://raw.githubusercontent.com/Arianee/spkz-metadata/main/80001/spkz-bar/17.json";
     }
 
     if(tokenId<1921){
-      return "metadata3";
+      return "https://raw.githubusercontent.com/Arianee/spkz-metadata/main/80001/spkz-bar/1920.json";
     }
 
-    return "metadata4";
+    return "https://raw.githubusercontent.com/Arianee/spkz-metadata/main/80001/spkz-bar/1920%2B.json";
   }
 
   function contractURI() public view returns (string memory)

@@ -4,7 +4,7 @@ const SPKZ = artifacts.require('SPKZLounge');
 
 
 module.exports = async function (deployer, network, accounts) {
-  const instance = await deployProxy(SPKZ, ["https://github.com/Arianee/spkz-metadata/blob/main/80001/contract-spkz-lounges.json"], { deployer });
+  const instance = await deployProxy(SPKZ, ["https://raw.githubusercontent.com/Arianee/spkz-metadata/main/137/contract-spkz-lounges.json"], { deployer });
   console.log('Deployed', instance.address);
 };
 
