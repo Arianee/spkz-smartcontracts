@@ -1,10 +1,10 @@
 const { deployProxy, upgradeProxy } = require('@openzeppelin/truffle-upgrades');
 
-const SPKZ = artifacts.require('SPKZ');
+const SPKZ = artifacts.require('SPKZLounge');
 
 
 module.exports = async function (deployer, network, accounts) {
-  const instance = await deployProxy(SPKZ, ["https://metadata.spkz.io/contract.json"], { deployer });
+  const instance = await deployProxy(SPKZ, ["https://raw.githubusercontent.com/Arianee/spkz-metadata/main/137/contract-spkz-lounges.json"], { deployer });
   console.log('Deployed', instance.address);
 };
 

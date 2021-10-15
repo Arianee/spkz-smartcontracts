@@ -11,7 +11,7 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/utils/CountersUpgradeable.sol";
 import "./includes/NativeMetaTransaction.sol";
 
-contract SPKZ is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721URIStorageUpgradeable, PausableUpgradeable, AccessControlUpgradeable, UUPSUpgradeable {
+contract SPKZLounge is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721EnumerableUpgradeable, ERC721URIStorageUpgradeable, PausableUpgradeable, AccessControlUpgradeable, UUPSUpgradeable {
     using CountersUpgradeable for CountersUpgradeable.Counter;
 
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
@@ -31,7 +31,7 @@ contract SPKZ is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721
     }
 
     function initialize(string memory _newContractUri) initializer public {
-        __ERC721_init("SPKZ", "SPKZ");
+        __ERC721_init("SPKZ Lounge", "SPKZlounge");
         __ERC721Enumerable_init();
         __ERC721URIStorage_init();
         __Pausable_init();
@@ -40,7 +40,7 @@ contract SPKZ is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(PAUSER_ROLE, msg.sender);
         _setupRole(UPGRADER_ROLE, msg.sender);
-        _initializeEIP712("SPKZ");
+        _initializeEIP712("SPKZ Lounge");
         setContractUri(_newContractUri);
     }
 
@@ -63,8 +63,6 @@ contract SPKZ is Initializable, NativeMetaTransaction, ERC721Upgradeable, ERC721
         _setTokenURI(_tokenIdCounter.current(), _tokenURI);
         _tokenIdCounter.increment();
     }
-
-
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
